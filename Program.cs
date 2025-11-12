@@ -1,4 +1,6 @@
 using desafio_picpay_simplificado.Data;
+using desafio_picpay_simplificado.Repositories.User;
+using desafio_picpay_simplificado.Services.User;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +14,9 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("AppDbContextConnectionString");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connectionString,
     ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
