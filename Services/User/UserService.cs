@@ -1,4 +1,5 @@
 ﻿using desafio_picpay_simplificado.Dtos;
+using desafio_picpay_simplificado.Models;
 using desafio_picpay_simplificado.Repositories.User;
 
 namespace desafio_picpay_simplificado.Services.User;
@@ -10,6 +11,11 @@ public class UserService : IUserService
     public UserService(IUserRepository userRepository)
     {
         _userRepository = userRepository;
+    }
+
+    public async Task<List<UserModel>> GetAllUsers()
+    {
+        return await _userRepository.GetAllUsers();
     }
     
     public async Task<int> CreateUser(CreateUserDto createUserDto)

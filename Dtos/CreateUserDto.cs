@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using desafio_picpay_simplificado.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace desafio_picpay_simplificado.Dtos;
 

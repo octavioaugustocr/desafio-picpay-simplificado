@@ -12,6 +12,11 @@ public class UserRepository : IUserRepository
     {
         _appDbContext = appDbContext;
     }
+    
+    public async Task<List<UserModel>> GetAllUsers()
+    {
+        return _appDbContext.User.ToList();
+    }
 
     public async Task<int> CreateUser(CreateUserDto createUserDto)
     {
