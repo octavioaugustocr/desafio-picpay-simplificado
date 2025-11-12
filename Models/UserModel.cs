@@ -1,9 +1,11 @@
-﻿using desafio_picpay_simplificado.Enums;
+﻿using System.ComponentModel.DataAnnotations;
+using desafio_picpay_simplificado.Enums;
 
 namespace desafio_picpay_simplificado.Models;
 
 public class UserModel
 {
+    [Key]
     public int IdUser { get; set; }
     public string FullName { get; set; }
     public string CpfCnpj { get; set; }

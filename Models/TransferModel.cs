@@ -1,7 +1,10 @@
-﻿namespace desafio_picpay_simplificado.Models;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace desafio_picpay_simplificado.Models;
 
 public class TransferModel
 {
+    [Key]
     public int IdTransfer { get; set; }
     public decimal Value { get; set; }
     public int Payer { get; set; }
