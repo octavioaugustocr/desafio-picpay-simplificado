@@ -1,6 +1,7 @@
 ﻿using desafio_picpay_simplificado.Data;
 using desafio_picpay_simplificado.Dtos;
 using desafio_picpay_simplificado.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace desafio_picpay_simplificado.Repositories.User;
 
@@ -12,7 +13,13 @@ public class UserRepository : IUserRepository
     {
         _appDbContext = appDbContext;
     }
-    
+
+    public async Task<UserModel> GetUserById(int id)
+    {
+        // return await _appDbContext.User.FirstOrDefaultAsync(u => u.IdUser == id);
+        return await _appDbContext.User.FindAsync(id);
+    }
+
     public async Task<List<UserModel>> GetAllUsers()
     {
         return _appDbContext.User.ToList();

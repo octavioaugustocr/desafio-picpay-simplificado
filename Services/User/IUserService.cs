@@ -5,6 +5,7 @@ namespace desafio_picpay_simplificado.Services.User;
 
 public interface IUserService
 {
+    Task<UserModel> GetUserById(int id);
     Task<List<UserModel>> GetAllUsers();
     Task<int> CreateUser(CreateUserDto createUserDto);
 }
