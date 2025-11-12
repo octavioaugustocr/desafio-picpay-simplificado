@@ -22,5 +22,9 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<UserModel>(entity => entity.HasKey(u => u.IdUser));
         modelBuilder.Entity<TransferModel>(entity => entity.HasKey(t => t.IdTransfer));
+
+        // Configurando o E-mail e CPFCNPJ para serem únicos
+        modelBuilder.Entity<UserModel>(entity => entity.HasIndex(u => u.Email).IsUnique());
+        modelBuilder.Entity<UserModel>(entity => entity.HasIndex(u => u.CpfCnpj).IsUnique());
     }
 }
