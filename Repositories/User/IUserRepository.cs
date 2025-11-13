@@ -8,4 +8,5 @@ public interface IUserRepository
     Task<UserModel> GetUserById(int id);
     Task<List<UserModel>> GetAllUsers();
     Task<int> CreateUser(CreateUserDto createUserDto);
+    Task<bool> DeleteUserById(int id);
 }

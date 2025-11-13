@@ -41,4 +41,13 @@ public class UserRepository : IUserRepository
 
         return userModel.IdUser;
     }
+
+    public async Task<bool> DeleteUserById(int id)
+    {
+        var userDeleted = _appDbContext.User.Remove(await GetUserById(id))
+            .State == EntityState.Deleted;
+        await _appDbContext.SaveChangesAsync();
+        
+        return userDeleted;
+    }
 }

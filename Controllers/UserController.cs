@@ -34,4 +34,11 @@ public class UserController : ControllerBase
     {
         return Ok(await _userService.CreateUser(createUserDto));
     }
+
+    [HttpDelete]
+    [Route("user/delete/{id}")]
+    public async Task<IActionResult> DeleteUserById(int id)
+    {
+        return Ok(await _userService.DeleteUserById(id));
+    }
 }
