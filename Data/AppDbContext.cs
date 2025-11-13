@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     
     public DbSet<UserModel> User { get; set; }
     public DbSet<TransferModel> Transfer { get; set; }
+    public DbSet<DepositModel> Deposit { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -20,8 +21,12 @@ public class AppDbContext : DbContext
         modelBuilder.Entity<TransferModel>(entity => entity.Property(t => t.Value)
             .HasColumnType("decimal(18,2)"));
 
+        modelBuilder.Entity<DepositModel>(entity => entity.Property(d => d.Amount)
+            .HasColumnType("decimal(18,2)"));
+
         modelBuilder.Entity<UserModel>(entity => entity.HasKey(u => u.IdUser));
         modelBuilder.Entity<TransferModel>(entity => entity.HasKey(t => t.IdTransfer));
+        modelBuilder.Entity<DepositModel>(entity => entity.HasKey(t => t.IdDeposit));
 
         // Configurando o E-mail e CPFCNPJ para serem únicos
         modelBuilder.Entity<UserModel>(entity => entity.HasIndex(u => u.Email).IsUnique());
