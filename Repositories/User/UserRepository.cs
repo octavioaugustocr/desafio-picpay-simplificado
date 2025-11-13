@@ -42,6 +42,19 @@ public class UserRepository : IUserRepository
         return userModel.IdUser;
     }
 
+    public async Task<UserModel> UpdateUserById(int id, UpdateUserDto updateUserDto)
+    {
+        var userModel = await GetUserById(id);
+        
+        userModel.FullName = updateUserDto.FullName;
+        userModel.Password = updateUserDto.Password;
+
+        _appDbContext.User.Update(userModel);
+        await _appDbContext.SaveChangesAsync();
+        
+        return userModel;
+    }
+
     public async Task<bool> DeleteUserById(int id)
     {
         var userDeleted = _appDbContext.User.Remove(await GetUserById(id))

@@ -28,6 +28,11 @@ public class UserService : IUserService
         return await _userRepository.CreateUser(createUserDto);
     }
 
+    public async Task<UserModel> UpdateUserById(int id, UpdateUserDto updateUserDto)
+    {
+        return await _userRepository.UpdateUserById(id, updateUserDto);
+    }
+
     public async Task<bool> DeleteUserById(int id)
     {
         return await _userRepository.DeleteUserById(id);

@@ -8,5 +8,6 @@ public interface IUserService
     Task<UserModel> GetUserById(int id);
     Task<List<UserModel>> GetAllUsers();
     Task<int> CreateUser(CreateUserDto createUserDto);
+    Task<UserModel> UpdateUserById(int id, UpdateUserDto updateUserDto);
     Task<bool> DeleteUserById(int id);
 }
