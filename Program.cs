@@ -1,5 +1,7 @@
 using desafio_picpay_simplificado.Data;
+using desafio_picpay_simplificado.Repositories.Deposit;
 using desafio_picpay_simplificado.Repositories.User;
+using desafio_picpay_simplificado.Services.Deposit;
 using desafio_picpay_simplificado.Services.User;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,6 +19,8 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseMySql(connecti
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IDepositRepository, DepositRepository>();
+builder.Services.AddScoped<IDepositService, DepositService>();
 
 var app = builder.Build();
 
