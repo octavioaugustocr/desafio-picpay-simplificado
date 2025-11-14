@@ -23,6 +23,11 @@ public class DepositRepository : IDepositRepository
         return true;
     }
 
+    public async Task<DepositModel> GetDepositById(int id)
+    {
+        return await _appDbContext.Deposit.FindAsync(id);
+    }
+
     public async Task<List<DepositModel>> GetAllDeposits()
     {
         return await _appDbContext.Deposit.ToListAsync();

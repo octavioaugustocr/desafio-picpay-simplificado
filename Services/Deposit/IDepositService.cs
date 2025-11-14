@@ -5,6 +5,7 @@ namespace desafio_picpay_simplificado.Services.Deposit;
 
 public interface IDepositService
 {
+    Task<DepositModel> GetDepositById(int id);
     Task<List<DepositModel>> GetAllDeposits();
     Task<DepositModel> MakeDepositByIdUser(MakeDepositDto makeDepositDto);
 }

@@ -16,6 +16,13 @@ public class DepositController : ControllerBase
     }
 
     [HttpGet]
+    [Route("deposit/{id}")]
+    public async Task<IActionResult> GetDepositById(int id)
+    {
+        return Ok(await _depositService.GetDepositById(id));
+    }
+
+    [HttpGet]
     [Route("deposits")]
     public async Task<IActionResult> GetAllDeposits()
     {

@@ -13,6 +13,11 @@ public class DepositService : IDepositService
         _depositRepository = depositRepository;
     }
 
+    public async Task<DepositModel> GetDepositById(int id)
+    {
+        return await _depositRepository.GetDepositById(id);
+    }
+
     public async Task<List<DepositModel>> GetAllDeposits()
     {
         return await _depositRepository.GetAllDeposits();
