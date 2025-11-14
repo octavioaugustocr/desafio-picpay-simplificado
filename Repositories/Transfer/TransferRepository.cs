@@ -43,17 +43,23 @@ public class TransferRepository : ITransferRepository
 
     private async Task<bool> FinalizeTransfer(MakeTransferDto makeTransferDto)
     {
-        var payer = _appDbContext.User.Find(makeTransferDto.Payer);
-        var payee = _appDbContext.User.Find(makeTransferDto.Payee);
+        try
+        {
+            var payer = _appDbContext.User.Find(makeTransferDto.Payer);
+            var payee = _appDbContext.User.Find(makeTransferDto.Payee);
         
-        payer.Balance -= makeTransferDto.Value;
-        payee.Balance += makeTransferDto.Value;
+            payer.Balance -= makeTransferDto.Value;
+            payee.Balance += makeTransferDto.Value;
 
-        _appDbContext.User.Update(payer);
-        _appDbContext.User.Update(payee);
-        await _appDbContext.SaveChangesAsync();
+            _appDbContext.User.Update(payer);
+            _appDbContext.User.Update(payee);
+            await _appDbContext.SaveChangesAsync();
         
-        return true;
+            return true; 
+        } catch (Exception)
+        {
+            return false;
+        }
     }
 
     public async Task<TransferModel> MakeTransfer(MakeTransferDto makeTransferDto)
