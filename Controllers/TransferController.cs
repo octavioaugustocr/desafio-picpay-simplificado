@@ -16,6 +16,13 @@ public class TransferController : ControllerBase
         _transferService = transferService;
     }
 
+    [HttpGet]
+    [Route("transfers")]
+    public async Task<IActionResult> GetAllTransfers()
+    {
+        return Ok(await _transferService.GetAllTransfers());
+    }
+
     [HttpPost]
     [Route("transfer")]
     public async Task<IActionResult> MakeTransfer(MakeTransferDto makeTransferDto)

@@ -13,6 +13,11 @@ public class TransferService : ITransferService
         _transferRepository = transferRepository;
     }
 
+    public async Task<List<TransferModel>> GetAllTransfers()
+    {
+        return await _transferRepository.GetAllTransfers();
+    }
+
     public async Task<TransferModel> MakeTransfer(MakeTransferDto makeTransferDto)
     {
         return await _transferRepository.MakeTransfer(makeTransferDto);

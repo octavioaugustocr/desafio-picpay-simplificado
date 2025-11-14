@@ -2,6 +2,7 @@
 using desafio_picpay_simplificado.Dtos;
 using desafio_picpay_simplificado.Enums;
 using desafio_picpay_simplificado.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace desafio_picpay_simplificado.Repositories.Transfer;
 
@@ -60,6 +61,11 @@ public class TransferRepository : ITransferRepository
         {
             return false;
         }
+    }
+
+    public async Task<List<TransferModel>> GetAllTransfers()
+    {
+        return await _appDbContext.Transfer.ToListAsync();
     }
 
     public async Task<TransferModel> MakeTransfer(MakeTransferDto makeTransferDto)
