@@ -16,6 +16,12 @@ public class TransferController : ControllerBase
         _transferService = transferService;
     }
 
+    [HttpGet("transfer/{id}")]
+    public async Task<IActionResult> GetTransferById(int id)
+    {
+        return Ok(await _transferService.GetTransferById(id));
+    }
+
     [HttpGet]
     [Route("transfers")]
     public async Task<IActionResult> GetAllTransfers()

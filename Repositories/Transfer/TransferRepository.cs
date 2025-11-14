@@ -63,6 +63,11 @@ public class TransferRepository : ITransferRepository
         }
     }
 
+    public async Task<TransferModel> GetTransferById(int id)
+    {
+        return await _appDbContext.Transfer.FindAsync(id);
+    }
+
     public async Task<List<TransferModel>> GetAllTransfers()
     {
         return await _appDbContext.Transfer.ToListAsync();
