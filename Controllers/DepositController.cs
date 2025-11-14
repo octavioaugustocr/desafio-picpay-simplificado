@@ -15,6 +15,13 @@ public class DepositController : ControllerBase
         _depositService = depositService;
     }
 
+    [HttpGet]
+    [Route("deposits")]
+    public async Task<IActionResult> GetAllDeposits()
+    {
+        return Ok(await _depositService.GetAllDeposits());
+    }
+
     [HttpPost]
     [Route("deposit")]
     public async Task<IActionResult> MakeDepositByIdUser(MakeDepositDto makeDepositDto)

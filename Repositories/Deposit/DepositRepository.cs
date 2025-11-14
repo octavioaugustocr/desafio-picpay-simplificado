@@ -23,6 +23,11 @@ public class DepositRepository : IDepositRepository
         return true;
     }
 
+    public async Task<List<DepositModel>> GetAllDeposits()
+    {
+        return await _appDbContext.Deposit.ToListAsync();
+    }
+
     public async Task<DepositModel> MakeDepositByIdUser(MakeDepositDto makeDepositDto)
     {
         var userModel = await _appDbContext.User.FirstOrDefaultAsync(u => u.IdUser == makeDepositDto.IdUser);
