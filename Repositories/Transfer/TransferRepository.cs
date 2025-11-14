@@ -63,6 +63,17 @@ public class TransferRepository : ITransferRepository
         }
     }
 
+    private async Task<bool> SendTransferNotification()
+    {
+        var client = new HttpClient();
+        
+        var response = await client.GetAsync("https://util.devi.tools/api/v1/notify");
+        if (!response.IsSuccessStatusCode) return false;
+        
+        // Enviar notificação..
+        return true;
+    }
+
     public async Task<TransferModel> GetTransferById(int id)
     {
         return await _appDbContext.Transfer.FindAsync(id);
@@ -90,6 +101,8 @@ public class TransferRepository : ITransferRepository
         if (!await FinalizeTransfer(makeTransferDto)) return null;
         
         await _appDbContext.SaveChangesAsync();
+        
+        await SendTransferNotification();
         
         return transferModel;
     }
